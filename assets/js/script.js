@@ -2,6 +2,7 @@ const addBookEl = document.querySelector('#addBook');
 addBookEl.addEventListener('click', showBookForm);
 const contentEl = document.querySelector('#content');
 const booksEl = document.querySelector('#books');
+const bookForm = document.createElement('form')
 const myLibrary = JSON.parse(localStorage.getItem('myLibrary')) || [];
 
 function book(title, author, pages, read) {
@@ -38,7 +39,7 @@ function book(title, author, pages, read) {
 
 
 function showBookForm() {
-    const bookForm = document.createElement('form')
+    
     bookForm.innerHTML = 
     `<h2>Add Book</h2>
     <input type='text' id='title' placeholder='Title'>
@@ -56,11 +57,11 @@ function showBookForm() {
     const bookPages = document.querySelector('#pages');
     const bookRead = document.querySelector('#read');
     const submit = document.querySelector('#submit')
+    window.addEventListener('click', checkClick);
     submit.addEventListener('click', () => {
         const addBook = new book(bookTitle.value, bookAuthor.value, bookPages.value, bookRead.checked)
         myLibrary.push(addBook)
         localStorage.setItem('myLibrary', JSON.stringify(myLibrary))
-        
     })
 }
 
@@ -97,4 +98,11 @@ function removeBook(title) {
     console.log(myLibrary)
     localStorage.setItem('myLibrary', JSON.stringify(myLibrary)) 
     window.location.reload(false)
+}
+
+function checkClick(e) {
+    console.log(e.path.indexOf(addBookEl))
+    if (e.path.indexOf(addBookEl) == -1 && e.path.indexOf(bookForm) == -1) {
+        window.location.reload(false)
+    }
 }
