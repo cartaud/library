@@ -18,18 +18,20 @@ function book(title, author, pages, read) {
         `<h3>"${book.title}"</h3>
         <h3>by: ${book.author}</h3> 
         <h3>${book.pages} Pages</h3>
-        <button class='bookRead' id="${book.title}">Read</button>
-        <button>Remove</button>
+        <button class='bookRead' data-name="${book.title}">Read</button>
+        <button class='bookRemove' onclick='removeBook("${book.title}")'>Remove</button>
         `
         booksEl.append(bookCard)
         bookCard.setAttribute('class', 'card')
         const bookReadBtn = document.querySelector('.bookRead');
+        const bookRemoveBtn = document.querySelector('.bookRemove');
         if (book.read == true) {
             bookReadBtn.setAttribute('class', 'green')
         }
         else {
             bookReadBtn.setAttribute('class', 'red')
         }
+        
         bookReadBtn.addEventListener('click', toogleRead)
     })
 })()
@@ -62,10 +64,9 @@ function showBookForm() {
     })
 }
 
-
 function toogleRead() {
     const current = this.classList[0]
-    const bookTitle = this.getAttribute('id')
+    const bookTitle = this.getAttribute('data-name')
     let j = 0
     for (let i=0;i<myLibrary.length;i++) {
         if (myLibrary[i].title == bookTitle) {
@@ -81,6 +82,19 @@ function toogleRead() {
         this.setAttribute('class', 'green');
         myLibrary[j].read = true
     }
-    localStorage.setItem('myLibrary', JSON.stringify(myLibrary))
-    
+    localStorage.setItem('myLibrary', JSON.stringify(myLibrary))   
+}
+
+function removeBook(title) {
+    let j = 0
+    for (let i=0;i<myLibrary.length;i++) {
+        if (myLibrary[i].title == title) {
+           i=myLibrary.length
+        }
+        else j++
+    }
+    myLibrary.splice(j,1)
+    console.log(myLibrary)
+    localStorage.setItem('myLibrary', JSON.stringify(myLibrary)) 
+    window.location.reload(false)
 }
