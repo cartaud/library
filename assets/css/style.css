@@ -1,0 +1,77 @@
+header {
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    font-size: 2em;
+}
+
+body,
+button {
+    background-color: darkgrey;
+}
+
+#content button {
+    border: none;
+    font-size: 1.5em;
+    
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 3%;
+}
+
+#bookForm {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px 10px 10px 10px;
+    top: 30%;
+    background-color: lightgray;
+    border-radius: 8px;
+    width: 20%;
+}
+
+#bookForm h2 {
+    text-align: center;
+}
+
+#bookForm input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+#bookForm button {
+    background-color: rgb(5, 224, 5);
+    border-radius: 5px;
+    padding: 5px 0;
+}
+
+#bookForm div {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.card {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 20%;
+    padding: 10px;
+}
+
+.green {
+    background-color: green;
+}
+
+.red {
+    background-color: red;
+}
