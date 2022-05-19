@@ -110,5 +110,14 @@ input:focus {
     background-color: rgb(248, 116, 116);
 }
 
+.green:hover {
+    background-color: rgb(72, 164, 72);;
+}
 
+.red:hover {
+    background-color: rgb(189, 56, 56);
+}
 
+.bookRemove:hover {
+    background-color: rgb(167, 167, 167);
+}
