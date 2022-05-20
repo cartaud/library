@@ -42,9 +42,9 @@ function showBookForm() {
     
     bookForm.innerHTML = 
     `<h2>Add Book</h2>
-    <input type='text' id='title' placeholder='Title'>
-    <input type='text' id='author' placeholder='Author'>
-    <input type='number' id='pages' placeholder='Pages'>
+    <input type='text' id='title' placeholder='Title' required>
+    <input type='text' id='author' placeholder='Author' required>
+    <input type='number' min='1' id='pages' placeholder='Pages' required>
     <div>
     Have You read it?<input type='checkbox' id='read'>
     </div>
@@ -59,9 +59,11 @@ function showBookForm() {
     const submit = document.querySelector('#submit')
     window.addEventListener('click', checkClick);
     submit.addEventListener('click', () => {
-        const addBook = new book(bookTitle.value, bookAuthor.value, bookPages.value, bookRead.checked)
-        myLibrary.push(addBook)
-        localStorage.setItem('myLibrary', JSON.stringify(myLibrary))
+        if (bookPages.value > 0 && bookTitle.value.length > 0 && bookAuthor.value.length > 0){
+            const addBook = new book(bookTitle.value, bookAuthor.value, bookPages.value, bookRead.checked)
+            myLibrary.push(addBook)
+            localStorage.setItem('myLibrary', JSON.stringify(myLibrary))
+        }
     })
 }
 
